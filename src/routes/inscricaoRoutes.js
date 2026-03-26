@@ -71,6 +71,10 @@ router.post("/", InscricaoController.store);
  */
 router.get("/", InscricaoController.index);
 
+// --- AS ROTAS ABAIXO ESTÃO COMENTADAS PARA O SERVIDOR NÃO TRAVAR ---
+// --- Para ativá-las, você precisará criar 'listarPorEvento' e 'cancelar' no InscricaoController.js ---
+
+/*
 /**
  * @swagger
  * /inscricoes/evento/{eventoId}:
@@ -86,7 +90,7 @@ router.get("/", InscricaoController.index);
  *     responses:
  *       200:
  *         description: Lista de inscritos no evento
- */
+ * /
 router.get("/evento/:eventoId", InscricaoController.listarPorEvento);
 
 /**
@@ -106,7 +110,8 @@ router.get("/evento/:eventoId", InscricaoController.listarPorEvento);
  *         description: Inscrição cancelada com sucesso
  *       404:
  *         description: Inscrição não encontrada
- */
+ * /
 router.patch("/:id/cancelar", InscricaoController.cancelar);
+*/
 
 module.exports = router;
