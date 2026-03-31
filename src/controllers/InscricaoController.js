@@ -3,24 +3,21 @@ const { NotFoundError, ValidationError } = require("../errors/AppError");
 
 function store(req, res, next) {
   try {
-    const { participanteId, eventoId } = req.body;
-
-    if (!participanteId || !eventoId) {
-      throw new ValidationError("Participante e Evento são obrigatórios");
+    const { eventoId, participanteId } = req.body;
+    const erros = validar([
+      // eventoId é obrigatório
+      // _________________________________
+      // participanteId é obrigatório
+      // _________________________________
+    ]);
+    if (erros) {
+      throw new ValidationError(erros.join("; "));
     }
-
-    const inscricao = InscricaoModel.criar(participanteId, eventoId);
-
-    res.status(201).json(inscricao);
-  } catch (erro) {
-    next(erro);
-  }
-}
-
-function index(req, res, next) {
-  try {
-    const inscricoes = InscricaoModel.listarTodos();
-    res.json(inscricoes);
+    const resultado = InscricaoModel.criar(
+      parseInt(eventoId),
+      parseInt(participanteId),
+    );
+    res.status(201).json(resultado);
   } catch (erro) {
     next(erro);
   }
