@@ -1,6 +1,7 @@
 const ParticipanteModel = require("../models/ParticipanteModel");
 const { NotFoundError, ValidationError } = require("../errors/AppError");
-const { isEmail } = require("../validators");
+
+const { isEmail } = require("../helpers/validators"); 
 
 function validar(regras) {
     const erros = regras.filter(Boolean);
