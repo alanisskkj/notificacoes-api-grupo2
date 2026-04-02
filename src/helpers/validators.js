@@ -1,6 +1,3 @@
-/**
- * Verifica se um valor existe e não é vazio
- */
 function isRequired(valor, nomeCampo) {
   if (valor === undefined || valor === null) {
     return `${nomeCampo} é obrigatório`;
@@ -11,9 +8,6 @@ function isRequired(valor, nomeCampo) {
   return null;
 }
 
-/**
- * Valida e-mail
- */
 function isEmail(valor) {
   if (!valor) return null;
 
@@ -26,9 +20,6 @@ function isEmail(valor) {
   return null;
 }
 
-/**
- * Número inteiro positivo
- */
 function isPositiveInteger(valor, nomeCampo) {
   if (valor === undefined || valor === null) return null;
 
@@ -39,9 +30,6 @@ function isPositiveInteger(valor, nomeCampo) {
   return null;
 }
 
-/**
- * Tamanho mínimo
- */
 function minLength(valor, min, nomeCampo) {
   if (!valor) return null;
 
@@ -52,9 +40,6 @@ function minLength(valor, min, nomeCampo) {
   return null;
 }
 
-/**
- * Junta os erros
- */
 function validar(validacoes) {
   const erros = validacoes.filter((erro) => erro !== null);
   return erros.length > 0 ? erros : null;
