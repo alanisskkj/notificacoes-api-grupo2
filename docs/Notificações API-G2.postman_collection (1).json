@@ -1,0 +1,170 @@
+{
+  "info": {
+    "_postman_id": "75ba343f-cd38-4637-ab41-aa3493d73b67",
+    "name": "Notificações API-G2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52939910",
+    "_collection_link": "https://go.postman.co/collection/52939910-75ba343f-cd38-4637-ab41-aa3493d73b67?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Teste POST",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"nome\": \"AB\",\r\n\"data\": \"\",\r\n\"capacidade\": -10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/eventos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "eventos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Teste Evento sem nome",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"nome\": \"AB\",\r\n\"data\": \"\",\r\n\"capacidade\": -10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/eventos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "eventos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Teste incricao duplicada",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n\"nome\": \"AB\",\r\n\"data\": \"\",\r\n\"capacidade\": -10\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/eventos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "eventos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Teste Evento inexistente",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/eventos/999",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "eventos",
+            "999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Eventos XYZ",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/xyz",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "xyz"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET Eventos",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "GET Eventos ByID",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "GET Rota invalida",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}

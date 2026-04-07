@@ -1,7 +1,5 @@
 const InscricaoModel = require("../models/InscricaoModel");
-const { NotFoundError, ValidationError } = require("../errors/AppError");
-
-
+const { ValidationError } = require("../errors/AppError");
 const { isRequired, validar } = require("../helpers/validators");
 
 function index(req, res, next) {
@@ -30,7 +28,7 @@ function store(req, res, next) {
       parseInt(eventoId),
       parseInt(participanteId),
     );
-    
+
     res.status(201).json(resultado);
   } catch (erro) {
     next(erro);

@@ -9,3 +9,16 @@ para participantes de eventos.
 ```bash
 git clone https://github.com/SEU-USUARIO/notificacoes-api.git
 ```
+## ️ Tecnologias
+- Node.js
+- Express.js
+- Swagger (swagger-jsdoc + swagger-ui-express)
+- Dotenv (variáveis de ambiente)
+- Nodemon (desenvolvimento)
+- CORS
+
+## 🔧 Scripts
+| Comando | Descrição |
+|---------|-----------|
+| `npm start` | Inicia o servidor (produção) |
+| `npm run dev` | Inicia com Nodemon (desenvolvimento) |

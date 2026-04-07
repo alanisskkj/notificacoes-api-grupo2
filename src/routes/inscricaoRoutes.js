@@ -20,12 +20,6 @@ const InscricaoController = require("../controllers/InscricaoController");
  *         status:
  *           type: string
  *           enum: [confirmada, cancelada]
- *       example:
- *         id: 1
- *         eventoId: 1
- *         participanteId: 1
- *         dataInscricao: "2025-08-01T10:30:00.000Z"
- *         status: confirmada
  */
 
 /**
@@ -48,8 +42,6 @@ const InscricaoController = require("../controllers/InscricaoController");
  *     responses:
  *       201:
  *         description: Inscrição realizada com sucesso
- *       400:
- *         description: Erro na inscrição (IDs ausentes ou evento lotado)
  */
 router.post("/", InscricaoController.store);
 
@@ -67,51 +59,8 @@ router.post("/", InscricaoController.store);
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/Inscricao'
+ *                 $ref: "#/components/schemas/Inscricao"
  */
 router.get("/", InscricaoController.index);
-
-// --- AS ROTAS ABAIXO ESTÃO COMENTADAS PARA O SERVIDOR NÃO TRAVAR ---
-// --- Para ativá-las, você precisará criar 'listarPorEvento' e 'cancelar' no InscricaoController.js ---
-
-/*
-/**
- * @swagger
- * /inscricoes/evento/{eventoId}:
- *   get:
- *     summary: Listar inscrições por evento
- *     tags: [Inscricoes]
- *     parameters:
- *       - in: path
- *         name: eventoId
- *         required: true
- *         schema:
- *           type: integer
- *     responses:
- *       200:
- *         description: Lista de inscritos no evento
- * /
-router.get("/evento/:eventoId", InscricaoController.listarPorEvento);
-
-/**
- * @swagger
- * /inscricoes/{id}/cancelar:
- *   patch:
- *     summary: Cancelar uma inscrição
- *     tags: [Inscricoes]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *     responses:
- *       200:
- *         description: Inscrição cancelada com sucesso
- *       404:
- *         description: Inscrição não encontrada
- * /
-router.patch("/:id/cancelar", InscricaoController.cancelar);
-*/
 
 module.exports = router;

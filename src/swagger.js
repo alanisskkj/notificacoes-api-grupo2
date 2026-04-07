@@ -1,13 +1,13 @@
-// src/swagger.js
 const swaggerJsdoc = require("swagger-jsdoc");
+
 const options = {
     definition: {
         openapi: "3.0.0",
         info: {
-            title: "Notificações API",
+            title: "API de Gerenciamento de Eventos",
             version: "1.0.0",
             description:
-                "API para módulo de notificações por e-mail de uma plataforma de gerenciamento de eventos"
+                "API para gestão de eventos, participantes e inscrições com notificações por e-mail.",
         },
         servers: [
             {
@@ -15,9 +15,14 @@ const options = {
                 description: "Servidor de desenvolvimento",
             },
         ],
+        components: {
+            schemas: {},
+        },
     },
-    
+
     apis: ["./src/routes/*.js"],
 };
+
 const swaggerSpec = swaggerJsdoc(options);
+
 module.exports = swaggerSpec;

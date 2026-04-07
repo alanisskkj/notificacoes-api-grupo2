@@ -1,5 +1,3 @@
-// src/models/EventoModel.js
-// "Banco de dados" temporário — array em memória
 let eventos = [
     {
         id: 1,
@@ -48,9 +46,9 @@ function atualizar(id, dados) {
     const index = eventos.findIndex((evento) => evento.id === id);
     if (index === -1) return null;
     eventos[index] = {
-        ...eventos[index], // mantém os dados antigos
-        ...dados, // sobrescreve com os novos
-        id: id, // garante que o ID não muda
+        ...eventos[index],
+        ...dados,
+        id: id, 
     };
     return eventos[index];
 }
