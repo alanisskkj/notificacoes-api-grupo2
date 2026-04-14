@@ -1,29 +1,30 @@
-const { ValidationError } = require("../errors/AppError");
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/database");
 
-let inscricoes = [];
-let proximoId = 1;
-
-function criar(eventoId, participanteId) {
-    const jaInscrito = inscricoes.find(
-        (i) => i.eventoId === eventoId && i.participanteId === participanteId,
-    );
-    if (jaInscrito) {
-        throw new ValidationError("Participante já inscrito neste evento");
-    }
-    const novaInscricao = {
-        id: proximoId,
-        eventoId,
-        participanteId,
-        dataInscricao: new Date().toISOString(),
-        status: "confirmada",
-    };
-    proximoId++;
-    inscricoes.push(novaInscricao);
-    return novaInscricao;
-}
-
-function listarTodos() {
-    return inscricoes;
-}
-
-module.exports = { criar, listarTodos };
+const Inscricao = sequelize.define(
+    "Inscricao",
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        dataInscricao: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+            field: "data_inscricao",
+        },
+        status: {
+            type: DataTypes.ENUM("confirmada", "cancelada"),
+            allowNull: false,
+            defaultValue: "confirmada",
+        },
+    },
+    {
+        tableName: "inscricoes",
+        timestamps: true,
+        underscored: true,
+    },
+);
+module.exports = Inscricao;
