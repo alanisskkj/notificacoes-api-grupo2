@@ -1,16 +1,34 @@
-# Custos
+# Estimativa de Custos do Projeto
 
-## Recursos Humanos
+## Recursos Humanos (simulado)
+| Papel | Qtd | Horas/semana | Semanas | Custo/hora | Total |
+|-------|-----|-------------|---------|------------|-------|
+| Dev Back-End Jr | 3 | 8h | 16 | R$ 30 | R$ 11.520 |
+| **Subtotal RH** | | | | | **R$ 11.520** |
 
-| Papel | Qtd | Horas | Semanas | Valor | Total |
-|------|-----|------|--------|------|------     |
-| Dev  | 3   | 8h    | 4     | R$30 | R$ 2.880 |
 
-## Infra
-Tudo gratuito
+## Infraestrutura
+| Item | Custo mensal | Meses | Total |
+|------|-------------|-------|-------|
+| Servidor Render (free tier) | R$ 0 | 4 | R$ 0 |
+| MySQL (local) | R$ 0 | 4 | R$ 0 |
+| Mailtrap (free tier) | R$ 0 | 4 | R$ 0 |
+| Domínio (opcional) | R$ 40/ano | — | R$ 0 |
+| **Subtotal Infra** | | | **R$ 0** |
+
 
 ## Ferramentas
-VS Code, GitHub, Postman → R$ 0
+| Ferramenta | Licença | Custo |
+|---|---|---|
+| VS Code | Gratuita | R$ 0 |
+| Postman | Gratuita (básica) | R$ 0 |
+| GitHub | Gratuita | R$ 0 |
 
-## TOTAL
-R$ 2.880
+
+## Resumo
+| Categoria | Valor |
+|---|---|
+| Recursos Humanos | R$ 11.520 |
+| Infraestrutura | R$ 0 |
+| Ferramentas | R$ 0 |
+| **TOTAL ESTIMADO** | **R$ 11.520** |

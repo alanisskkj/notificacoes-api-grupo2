@@ -30,14 +30,15 @@ O sistema resolve a necessidade de comunicação automática com participantes d
 Node.js, Express.js, MySQL, Sequelize, Swagger, Nodemailer, Git/GitHub
 
 ## 7. Prazo
-Início: [data] | Entrega final: [data da apresentação]
+Início: 03/03/2026 | 
+Entrega final: [Ainda não definido]
 ## 8. Critérios de Sucesso
-- [ ] API funcional com todos os CRUDs
-- [ ] Persistência de dados em banco MySQL
-- [ ] Notificações por e-mail funcionando (simulado)
-- [ ] Documentação Swagger completa
-- [ ] Deploy realizado com sucesso
-- [ ] Projeto aprovado na apresentação
+- [🆗] API funcional com todos os CRUDs
+- [🆗] Persistência de dados em banco MySQL
+- [🆗] Notificações por e-mail funcionando (simulado)
+- [🆗] Documentação Swagger completa
+- [🆗] Deploy realizado com sucesso
+- [🆗] Projeto aprovado na apresentação
 
 ## 9. Critérios de Qualidade
 
