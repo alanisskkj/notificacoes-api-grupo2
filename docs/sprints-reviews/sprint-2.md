@@ -1,7 +1,7 @@
 # Sprint Review — Sprint 2
 
-**Período:** 08/05/2026 a 21/05/2026  
-**Participantes:** Ana, João, Carlos, Mariana  
+**Período:** 03/03/2026 a [data final] 
+**Participantes:** Alanis, Isabela, Isabele  
 
 ## O que foi planejado
 - Melhorar validações das rotas
@@ -12,34 +12,28 @@
 
 ## O que foi entregue
 - Validações aprimoradas nas rotas principais ✅
-- Tratamento de erros com try/catch implementado ✅
+- Tratamento de erros implementado ✅
 - Padronização de respostas de erro parcialmente concluída ✅
 - Parte das dívidas técnicas resolvidas ✅
-- Código parcialmente refatorado ✅
+- Código refatorado ✅
 
 ## O que ficou pendente
-- Algumas rotas ainda sem validação completa
-- Swagger não cobre 100% das rotas
-- Padronização total dos erros ainda não concluída
-- Refatoração incompleta em alguns services
+- Commit feito com mensagem descritiva
 
 ## Métricas
-- Cards planejados: 5  
-- Cards concluídos: 4  
-- Taxa de conclusão: 4/5 = 80%  
+- Cards planejados: 19 
+- Cards concluídos: 18  
+- Taxa de conclusão: 94,7%  
 
 - Commits por membro:  
-  - Ana: 9  
-  - João: 11  
-  - Carlos: 7  
-  - Mariana: 8  
+  - Alanis: 15  
+  - Isabela: 0  
+  - Isabele 0
+Todos os commits foram realizados por apenas uma pessoa ao final de cada bloco.
 
 ## Impedimentos encontrados
-- Tempo insuficiente para resolver todas as dívidas técnicas
-- Dificuldade na padronização global de erros
-- Integração entre módulos gerou pequenos conflitos
+- Pequenos conflitos entre os códigos, ams que foram ajustados para garantir conformidade.
 
 ## Lições aprendidas
 - Resolver dívida técnica mais cedo evita retrabalho
-- Padronização deve ser definida no início do projeto
 - Melhorar comunicação entre os membros do grupo

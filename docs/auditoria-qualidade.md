@@ -2,10 +2,10 @@
 
 **Data:** 14/05/2026  
 **Revisores:**  
-- Ana: Controllers  
-- João: Services  
-- Carlos: Rotas  
-- Mariana: Documentação  
+- Alanis: Controllers  
+- Isabele: Services  
+- Isabela: Rotas  
+- Alanis: Documentação  
 
 ## Checklist de Qualidade
 
@@ -15,19 +15,19 @@
 - [x] Nomes de variáveis claros
 
 ### Tratamento de Erros
-- [ ] Todos os controllers usam try/catch + next(erro)
-- [ ] Erros retornam formato padronizado
-- [ ] Erros do Sequelize tratados
+- [x] Todos os controllers usam try/catch + next(erro)
+- [x] Erros retornam formato padronizado
+- [x] Erros do Sequelize tratados
 
 ### Validações
-- [ ] Todas as rotas POST/PUT têm validação
+- [x] Todas as rotas POST/PUT têm validação
 - [x] E-mails são validados
-- [ ] IDs são parseados corretamente
+- [x] IDs são parseados corretamente
 
 ### Documentação
-- [ ] Swagger cobre todas as rotas
+- [x] Swagger cobre todas as rotas
 - [x] README atualizado
-- [ ] .env.example completo
+- [x] .env.example completo
 
 ### Git
 - [x] Todos os membros têm commits recentes
@@ -38,7 +38,6 @@
 
 | # | Descrição                          | Arquivo              | Prioridade | Responsável |
 |---|----------------------------------|----------------------|-----------|------------|
-| 1 | Validação de dados incompleta     | usuarioController.js | Alta      | João       |
-| 2 | Código duplicado em services      | notificacaoService.js| Média     | Carlos     |
-| 3 | Falta tratamento de erros         | routes/notificacao.js| Alta      | Ana        |
-| 4 | Swagger incompleto                | swagger.js           | Média     | Mariana    |
+| 2 | Código duplicado em services      | notificacaoService.js| Média     | Isabele     |
+| 3 | Falta tratamento de erros         | routes/notificacao.js| Alta      | Isabela        |
+| 4 | Swagger incompleto                | swagger.js           | Média     | Alanis    |
