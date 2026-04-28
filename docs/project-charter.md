@@ -22,8 +22,8 @@ O sistema resolve a necessidade de comunicação automática com participantes d
 | Nome | Função |
 |------|--------|
 |Alanis | Back-end / Banco de dados |
-|Isabela | Controllers / Rotas |
-|Alanis | Testes / Documentação |
+|Ana L. | Controllers / Rotas |
+|Isabela | Testes / Documentação |
 |Isabele| Deploy, integração e suporte |
 
 ## 6. Tecnologias
