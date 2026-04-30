@@ -71,4 +71,4 @@ module.exports = {
     criar,
     atualizar,
     deletar,
-};
+};Views
