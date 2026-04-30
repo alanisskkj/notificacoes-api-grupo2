@@ -1,38 +1,51 @@
-const InscricaoModel = require("../models/InscricaoModel");
-const { ValidationError } = require("../errors/AppError");
-const { isRequired, validar } = require("../helpers/validators");
+// src/controllers/InscricaoController.js
+const InscricaoService = require('../services/InscricaoService');
 
-function index(req, res, next) {
+async function store(req, res, next) {
   try {
-    const inscricoes = InscricaoModel.listarTodos();
+    const novaInscricao = await InscricaoService.criar(req.body);
+    res.status(201).json(novaInscricao);
+  } catch (erro) {
+    next(erro);
+  }
+}
+
+async function index(req, res, next) {
+  try {
+    const inscricoes = await InscricaoService.listarTodas();
     res.json(inscricoes);
   } catch (erro) {
     next(erro);
   }
 }
 
-function store(req, res, next) {
+async function listarPorEvento(req, res, next) {
   try {
-    const { eventoId, participanteId } = req.body;
+    const eventoId = parseInt(req.params.eventoId);
 
-    const erros = validar([
-      isRequired(eventoId, "ID do Evento"),
-      isRequired(participanteId, "ID do Participante"),
-    ]);
+    const inscricoes = await InscricaoService.listarPorEvento(eventoId);
 
-    if (erros) {
-      throw new ValidationError(erros.join("; "));
-    }
-
-    const resultado = InscricaoModel.criar(
-      parseInt(eventoId),
-      parseInt(participanteId),
-    );
-
-    res.status(201).json(resultado);
+    res.json(inscricoes);
   } catch (erro) {
     next(erro);
   }
 }
 
-module.exports = { store, index };
+async function cancelar(req, res, next) {
+  try {
+    const id = parseInt(req.params.id);
+
+    const inscricao = await InscricaoService.cancelar(id);
+
+    res.json(inscricao);
+  } catch (erro) {
+    next(erro);
+  }
+}
+
+module.exports = {
+  store,
+  index,
+  listarPorEvento,
+  cancelar,
+};

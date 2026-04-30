@@ -1,6 +1,7 @@
-const ParticipanteModel = require("../models/ParticipanteModel");
-const { NotFoundError, ValidationError } = require("../errors/AppError");
+// src/controllers/ParticipanteController.js
 
+const ParticipanteService = require("../services/ParticipanteService");
+const { ValidationError } = require("../errors/AppError");
 const { isEmail } = require("../helpers/validators"); 
 
 function validar(regras) {
@@ -8,89 +9,64 @@ function validar(regras) {
     return erros.length ? erros : null;
 }
 
-function index(req, res, next) {
+async function index(req, res, next) {
     try {
-        const participantes = ParticipanteModel.listarTodos();
+        const participantes = await ParticipanteService.listarTodos();
         res.json(participantes);
-    }
-    catch (erro) {
+    } catch (erro) {
         next(erro);
     }
 }
 
-function show(req, res, next) {
+async function show(req, res, next) {
     try {
         const id = parseInt(req.params.id);
-        const participante = ParticipanteModel.buscarPorId(id);
-        if (!participante) {
-            throw new NotFoundError("Participante");
-        }
-
+        const participante = await ParticipanteService.buscarPorId(id);
         res.json(participante);
     } catch (erro) {
         next(erro);
     }
 }
 
-function store(req, res, next) {
+async function store(req, res, next) {
     try {
         const { nome, email } = req.body;
 
+        // Validação manual antes de mandar para o Service
         const erros = validar([
             (!nome || nome.length < 2) && "Nome é obrigatório e deve ter pelo menos 2 caracteres",
-            (!email || !isEmail(email)) && "Email é obrigatório e deve ser válido"
+            (!email || isEmail(email) !== null) && "Email é obrigatório e deve ser válido"
         ]);
 
         if (erros) {
             throw new ValidationError(erros.join("; "));
         }
 
-        const novoParticipante = ParticipanteModel.criar({ nome, email });
+        const novoParticipante = await ParticipanteService.criar(req.body);
         res.status(201).json(novoParticipante);
-
     } catch (erro) {
         next(erro);
     }
 }
 
-function update(req, res, next) {
+async function update(req, res, next) {
     try {
         const id = parseInt(req.params.id);
-        const { nome, email } = req.body;
-
-        const erros = validar([
-            (nome && nome.length < 2) && "Nome deve ter pelo menos 2 caracteres",
-            (email && !isEmail(email)) && "Email inválido"
-        ]);
-
-        if (erros) {
-            throw new ValidationError(erros.join("; "));
-        }
-
-        const participanteAtualizado = ParticipanteModel.atualizar(id, req.body);
-
-        if (!participanteAtualizado) {
-            throw new NotFoundError("Participante");
-        }
-
+        const participanteAtualizado = await ParticipanteService.atualizar(id, req.body);
         res.json(participanteAtualizado);
-
     } catch (erro) {
         next(erro);
     }
 }
 
-function destroy(req, res, next) {
+async function destroy(req, res, next) {
     try {
         const id = parseInt(req.params.id);
-        const deletado = ParticipanteModel.deletar(id);
-        if (!deletado) {
-            throw new NotFoundError("Participante");
-        }
+        await ParticipanteService.deletar(id);
         res.status(204).send();
-    }
-    catch (erro) {
+    } catch (erro) {
         next(erro);
     }
 }
+
 module.exports = { index, show, store, update, destroy };
