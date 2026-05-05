@@ -6,9 +6,21 @@ async function index(req, res, next) {
 
     try {
 
-        const eventos = await EventoService.listarTodos();
+        const resultado = await EventoService.listarTodos({
 
-        res.json(eventos);
+            pagina: req.query.pagina,
+
+            porPagina: req.query.porPagina,
+
+            ordenarPor: req.query.ordenarPor,
+
+            ordem: req.query.ordem,
+
+            busca: req.query.busca,
+
+        });
+
+        res.json(resultado);
 
     } catch (erro) {
 
@@ -17,6 +29,7 @@ async function index(req, res, next) {
     }
 
 }
+
 
 async function show(req, res, next) {
 
@@ -87,5 +100,30 @@ async function destroy(req, res, next) {
     }
 
 }
+const { Op } = require("sequelize");
 
-module.exports = { index, show, store, update, destroy };
+async function listarFuturos(req, res, next) {
+
+    try {
+
+        const eventos = await EventoService.listarFuturos();
+
+        res.json(eventos);
+
+    } catch (erro) {
+
+        next(erro);
+
+    }
+
+}
+
+
+module.exports = {
+    index,
+    show,
+    store,
+    update,
+    destroy,
+    listarFuturos
+};

@@ -1,6 +1,6 @@
 // src/controllers/InscricaoController.js
 const InscricaoService = require('../services/InscricaoService');
-
+const xml2js = require('xml2js');
 async function store(req, res, next) {
   try {
     const novaInscricao = await InscricaoService.criar(req.body);
@@ -43,9 +43,41 @@ async function cancelar(req, res, next) {
   }
 }
 
+async function exportarXML(req, res, next) {
+  try {
+    const inscricoes = await InscricaoService.listarTodas();
+
+    const objetoParaXml = {
+      inscricoes: {
+        inscricao: inscricoes.map(i => ({
+          id: i.id,
+          status: i.status,
+          evento: i.evento ? i.evento.nome : 'N/A',
+          participante: {
+            nome: i.participante ? i.participante.nome : 'N/A',
+            email: i.participante ? i.participante.email : 'N/A'
+          }
+        }))
+      }
+    };
+    const builder = new xml2js.Builder({
+      renderOpts: { 'pretty': true, 'indent': '  ', 'newline': '\n' },
+      xmldec: { 'version': '1.0', 'encoding': 'UTF-8' }
+    });
+    const xml = builder.buildObject(objetoParaXml);
+
+    res.header('Content-Type', 'application/xml');
+    res.status(200).send(xml);
+
+  } catch (erro) {
+    next(erro);
+  }
+}
+
 module.exports = {
   store,
   index,
   listarPorEvento,
   cancelar,
+  exportarXML,
 };

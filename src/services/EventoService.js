@@ -1,13 +1,35 @@
-// src/services/EventoService.js
 const { Evento } = require('../models');
-const { NotFoundError, ValidationError } = require('../errors/AppError');
+const { Op } = require('sequelize');
 
-async function listarTodos() {
-    const eventos = await Evento.findAll({
-        order: [['data', 'ASC']],
+async function listarTodos(opcoes = {}) {
+    const {
+        pagina = 1,
+        porPagina = 10,
+        ordenarPor = 'data',
+        ordem = 'ASC',
+        busca = null,
+    } = opcoes;
+
+    const where = {};
+
+    if (busca) {
+        where.nome = { [Op.like]: `%${busca}%` };
+    }
+
+    const { count, rows } = await Evento.findAndCountAll({
+        where,
+        order: [[ordenarPor, ordem.toUpperCase()]],
+        limit: parseInt(porPagina),
+        offset: (parseInt(pagina) - 1) * parseInt(porPagina),
     });
 
-    return eventos;
+    return {
+        dados: rows,
+        total: count,
+        pagina: parseInt(pagina),
+        porPagina: parseInt(porPagina),
+        totalPaginas: Math.ceil(count / parseInt(porPagina)),
+    };
 }
 
 async function buscarPorId(id) {
@@ -65,10 +87,25 @@ async function deletar(id) {
     return true;
 }
 
+async function listarFuturos() {
+    const eventos = await Evento.findAll({
+        where: {
+            data: {
+                [Op.gt]: new Date(),
+            },
+        },
+        order: [["data", "ASC"]],
+    });
+
+    return eventos;
+}
+
 module.exports = {
+
     listarTodos,
     buscarPorId,
     criar,
     atualizar,
     deletar,
+    listarFuturos,
 };
