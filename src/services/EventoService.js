@@ -1,111 +1,125 @@
 const { Evento } = require('../models');
 const { Op } = require('sequelize');
+const cache = require('../config/cache');
 
 async function listarTodos(opcoes = {}) {
-    const {
-        pagina = 1,
-        porPagina = 10,
-        ordenarPor = 'data',
-        ordem = 'ASC',
-        busca = null,
-    } = opcoes;
 
-    const where = {};
+  const chaveCache = `eventos:${JSON.stringify(opcoes)}`;
 
-    if (busca) {
-        where.nome = { [Op.like]: `%${busca}%` };
-    }
+  const cacheExiste = cache.get(chaveCache);
 
-    const { count, rows } = await Evento.findAndCountAll({
-        where,
-        order: [[ordenarPor, ordem.toUpperCase()]],
-        limit: parseInt(porPagina),
-        offset: (parseInt(pagina) - 1) * parseInt(porPagina),
-    });
+  if (cacheExiste) {
+    console.log('Retornando eventos do CACHE');
+    return cacheExiste;
+  }
 
-    return {
-        dados: rows,
-        total: count,
-        pagina: parseInt(pagina),
-        porPagina: parseInt(porPagina),
-        totalPaginas: Math.ceil(count / parseInt(porPagina)),
+  console.log('Buscando eventos no BANCO');
+
+  const {
+    pagina = 1,
+    porPagina = 10,
+    ordenarPor = 'data',
+    ordem = 'ASC',
+    busca = null,
+  } = opcoes;
+
+  const where = {};
+
+  if (busca) {
+    where.nome = {
+      [Op.like]: `%${busca}%`,
     };
-}
+  }
 
-async function buscarPorId(id) {
-    const evento = await Evento.findByPk(id);
+  const { count, rows } = await Evento.findAndCountAll({
+    where,
 
-    if (!evento) {
-        throw new NotFoundError('Evento');
-    }
+    order: [
+      [ordenarPor, ordem.toUpperCase()],
+    ],
 
-    return evento;
-}
+    limit: parseInt(porPagina),
 
-async function criar(dados) {
-    try {
-        const novoEvento = await Evento.create(dados);
-        return novoEvento;
-    } catch (erro) {
-        if (erro.name === 'SequelizeValidationError') {
-            const mensagens = erro.errors.map(e => e.message).join('; ');
-            throw new ValidationError(mensagens);
-        }
+    offset:
+      (parseInt(pagina) - 1) *
+      parseInt(porPagina),
+  });
 
-        throw erro;
-    }
-}
+  const resultado = {
+    dados: rows,
+    total: count,
+    pagina: parseInt(pagina),
+    porPagina: parseInt(porPagina),
+    totalPaginas: Math.ceil(
+      count / parseInt(porPagina)
+    ),
+  };
 
-async function atualizar(id, dados) {
-    const evento = await Evento.findByPk(id);
+  cache.set(chaveCache, resultado);
 
-    if (!evento) {
-        throw new NotFoundError('Evento');
-    }
-
-    try {
-        await evento.update(dados);
-        return evento;
-    } catch (erro) {
-        if (erro.name === 'SequelizeValidationError') {
-            const mensagens = erro.errors.map(e => e.message).join('; ');
-            throw new ValidationError(mensagens);
-        }
-
-        throw erro;
-    }
-}
-
-async function deletar(id) {
-    const evento = await Evento.findByPk(id);
-
-    if (!evento) {
-        throw new NotFoundError('Evento');
-    }
-
-    await evento.destroy();
-    return true;
+  return resultado;
 }
 
 async function listarFuturos() {
-    const eventos = await Evento.findAll({
-        where: {
-            data: {
-                [Op.gt]: new Date(),
-            },
-        },
-        order: [["data", "ASC"]],
-    });
 
-    return eventos;
+  return Evento.findAll({
+    where: {
+      data: {
+        [Op.gt]: new Date(),
+      },
+    },
+
+    order: [
+      ['data', 'ASC'],
+    ],
+  });
+}
+
+async function buscarPorId(id) {
+
+  const evento = await Evento.findByPk(id);
+
+  if (!evento) {
+    throw new Error('Evento não encontrado');
+  }
+
+  return evento;
+}
+
+async function criar(dados) {
+
+  const evento = await Evento.create(dados);
+
+  cache.flushAll();
+
+  return evento;
+}
+
+async function atualizar(id, dados) {
+
+  const evento = await buscarPorId(id);
+
+  await evento.update(dados);
+
+  cache.flushAll();
+
+  return evento;
+}
+
+async function deletar(id) {
+
+  const evento = await buscarPorId(id);
+
+  await evento.destroy();
+
+  cache.flushAll();
 }
 
 module.exports = {
-
-    listarTodos,
-    buscarPorId,
-    criar,
-    atualizar,
-    deletar,
-    listarFuturos,
+  listarTodos,
+  listarFuturos,
+  buscarPorId,
+  criar,
+  atualizar,
+  deletar,
 };

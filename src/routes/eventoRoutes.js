@@ -4,6 +4,8 @@ const router = express.Router();
 const EventoController = require("../controllers/EventoController");
 const upload = require("../config/upload");
 const { Evento } = require("../models");
+const cacheMiddleware = require('../middlewares/cacheMiddleware');
+
 
 /**
  * @swagger
@@ -28,6 +30,12 @@ const { Evento } = require("../models");
  *           type: string
  */
 
+router.get("/futuros", EventoController.listarFuturos);
+
+router.get('/', cacheMiddleware(30), EventoController.index);
+
+router.get('/:id', cacheMiddleware(60), EventoController.show);
+
 router.get("/", EventoController.index);
 
 router.get("/:id", EventoController.show);
@@ -37,8 +45,6 @@ router.post("/", EventoController.store);
 router.put("/:id", EventoController.update);
 
 router.delete("/:id", EventoController.destroy);
-
-router.get("/futuros", EventoController.listarFuturos);
 
 router.post("/:id/banner", upload.single("banner"), async (req, res, next) => {
   try {
