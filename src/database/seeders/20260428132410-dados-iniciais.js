@@ -4,7 +4,6 @@ module.exports = {
 
   async up(queryInterface) {
 
-    // Inserir eventos
 
     await queryInterface.bulkInsert("eventos", [
 
@@ -64,8 +63,6 @@ module.exports = {
 
     ]);
 
-    // Inserir participantes
-
     await queryInterface.bulkInsert("participantes", [
 
       {
@@ -106,7 +103,6 @@ module.exports = {
 
     ]);
 
-    // Inserir inscrições
 
     await queryInterface.bulkInsert("inscricoes", [
 

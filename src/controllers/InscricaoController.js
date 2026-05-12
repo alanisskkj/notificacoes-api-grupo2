@@ -74,10 +74,21 @@ async function exportarXML(req, res, next) {
   }
 }
 
+async function show(req, res, next) {
+  try {
+    const id = parseInt(req.params.id);
+    const inscricao = await InscricaoService.buscarPorId(id);
+    res.json(inscricao);
+  } catch (erro) {
+    next(erro);
+  }
+}
+
 module.exports = {
   store,
   index,
   listarPorEvento,
   cancelar,
   exportarXML,
+  show
 };

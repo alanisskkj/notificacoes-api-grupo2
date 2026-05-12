@@ -90,9 +90,25 @@ async function cancelar(id) {
     return inscricao;
 }
 
+async function buscarPorId(id) {
+    const inscricao = await Inscricao.findByPk(id, {
+        include: [
+            { model: Evento, as: 'evento', attributes: ['id', 'nome', 'data'] },
+            { model: Participante, as: 'participante', attributes: ['id', 'nome', 'email'] },
+        ]
+    });
+
+    if (!inscricao) {
+        throw new NotFoundError('Inscricao');
+    }
+    return inscricao;
+}
+
+
 module.exports = {
     criar,
     listarTodas,
     listarPorEvento,
     cancelar,
+    buscarPorId
 };

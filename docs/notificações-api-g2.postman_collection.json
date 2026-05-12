@@ -1,0 +1,688 @@
+{
+  "info": {
+    "_postman_id": "8ef7520e-67e2-4b35-bc4e-bcaa27e985fb",
+    "name": "notificações-api-g2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52939910",
+    "_collection_link": "https://go.postman.co/collection/52939910-8ef7520e-67e2-4b35-bc4e-bcaa27e985fb?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Eventos",
+      "item": [
+        {
+          "name": "Buscar evento",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"nome\": \"AB\",\r\n\"data\": \"\",\r\n\"capacidade\": -10\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/eventos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtrar por nome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/eventos?busca=Workshop",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos"
+              ],
+              "query": [
+                {
+                  "key": "busca",
+                  "value": "Workshop"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Campos do evento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/eventos/14",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos",
+                "14"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Evento inexistente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/eventos/9999",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos",
+                "9999"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Adicionar evento",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \r\n            \"nome\": \"Workshop de React\",\r\n            \"descricao\": \"Aprenda React do zero\",\r\n            \"data\": \"2026-09-15T09:00:00.000Z\",\r\n            \"local\": \"SENAI - Sala 4\",\r\n            \"capacidade\": 60\r\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/eventos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Evento sem nome",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \r\n            \"nome\": \"\",\r\n            \"descricao\": \"Aprenda React do zero\",\r\n            \"data\": \"2025-08-15T09:00:00.000Z\",\r\n            \"local\": \"SENAI - Sala 4\",\r\n            \"capacidade\": 60\r\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/eventos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Evento com capacidade negativa",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \r\n            \"nome\": \"Workshop de React\",\r\n            \"descricao\": \"Aprenda React do zero\",\r\n            \"data\": \"2025-08-15T09:00:00.000Z\",\r\n            \"local\": \"SENAI - Sala 4\",\r\n            \"capacidade\": -10\r\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/eventos",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar campos",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{  \r\n            \"nome\": \"Hackathon SENAI 2026\",\r\n            \"descricao\": \"Maratona de programação do SENAI\",\r\n            \"data\": \"2026-10-15T09:00:00.000Z\",\r\n            \"local\": \"SENAI - Auditório\",\r\n            \"capacidade\": 100\r\n        }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/eventos/14",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos",
+                "14"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar eventos",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"nome\": \"AB\",\r\n\"data\": \"\",\r\n\"capacidade\": -10\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/eventos/23",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos",
+                "23"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Upload de imagem",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "banner",
+                  "description": "Maratona Hackaton",
+                  "type": "file",
+                  "uuid": "77800b8f-b781-446e-9778-10167a1539e9",
+                  "value": null
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/eventos/14/banner",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "eventos",
+                "14",
+                "banner"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Participantes",
+      "item": [
+        {
+          "name": "Listar participantes",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "banner",
+                  "description": "Maratona Hackaton",
+                  "type": "file",
+                  "uuid": "77800b8f-b781-446e-9778-10167a1539e9",
+                  "value": null
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3000/participantes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Adicionar participantes",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Isabela Sampaio\",\r\n    \"email\": \"isadora@email.com\"\r\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/participantes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Participante com email duplicado",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Isabele Sampaio\",\r\n    \"email\": \"isa@email.com\"\r\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/participantes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Participante com email inválido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"nome\": \"Mariana Sampaio\",\r\n    \"email\": \"marianaaaaemail.com\"\r\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/participantes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Inscrições",
+      "item": [
+        {
+          "name": "Adicionar inscrição",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventoId\": 15,\r\n  \"participanteId\": 19\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/inscricoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Adicionar inscrição duplicada",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventoId\": 15,\r\n  \"participanteId\": 20\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/inscricoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Inscrição de evento inexistente",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventoId\": 999,\r\n  \"participanteId\": 22\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/inscricoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Lista de inscrição",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventoId\": 16,\r\n  \"participanteId\": 20\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/inscricoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtrar por evento",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventoId\": 16,\r\n  \"participanteId\": 20\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/inscricoes/evento/6",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes",
+                "evento",
+                "6"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mudar status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/inscricoes/5/cancelar",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes",
+                "5",
+                "cancelar"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Exportação e Relatórios",
+      "item": [
+        {
+          "name": "Exportar evento XML",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/exportar/eventos/xml",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "exportar",
+                "eventos",
+                "xml"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Exportar evento JSON",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/exportar/eventos/json",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "exportar",
+                "eventos",
+                "json"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Exportar relatório",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/exportar/relatorio/inscricoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "exportar",
+                "relatorio",
+                "inscricoes"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Infraestrutura",
+      "item": [
+        {
+          "name": "Rota Inválida",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Rota inválida 2",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "http://localhost:3000/inscricoes/16/cancelar",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/inscricoes/16/cancelar",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "inscricoes",
+            "16",
+            "cancelar"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
