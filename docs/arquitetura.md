@@ -108,17 +108,31 @@ Cliente (Postman/Browser)
 src/
 │
 ├── config/
+│ ├── cache.js
+│ ├── database.js
+│ ├── database.json
+│ ├── upload.js
+|
 ├── controllers/
-│ ├── eventoController.js
-│ ├── participanteController.js
-│ ├── inscricaoController.js
-│ └── notificacaoController.js
-│
+│ ├── EventoController.js
+│ ├── ParticipanteController.js
+│ ├── InscricaoController.js
+|
+|── database/
+│ ├── migrations/
+│ ├── seeds/
+|
+|── errors/
+│ ├── AppError.js
+|
+|── helpers/
+│ ├── parseId.js
+│ ├── validators.js
+|
 ├── services/
 │ ├── eventoService.js
 │ ├── participanteService.js
 │ ├── inscricaoService.js
-│ └── notificacaoService.js
 │
 ├── models/
 │ ├── Evento.js
@@ -130,14 +144,18 @@ src/
 │ ├── eventoRoutes.js
 │ ├── participanteRoutes.js
 │ ├── inscricaoRoutes.js
-│ └── notificacaoRoutes.js
+│ └── exportRoutes.js
 │
 ├── middlewares/
 │ ├── errorHandler.js
 │ ├── cacheMiddleware.js
+│ ├── logger.js
+│ ├── notFound.js
+│ ├── responseTime.js
 │
 ├── app.js
-└── server.js
+|── server.js
+└── swagger.js
 
 ---
 
