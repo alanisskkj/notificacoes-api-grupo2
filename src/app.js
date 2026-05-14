@@ -1,3 +1,11 @@
+
+// Registrar observers (basta importar para ativar)
+
+require('./events/eventoObserver');
+require('./events/notificacaoObserver');
+require('./events/logObserver');
+require('./events/notificacaoObserver');
+
 const express = require("express");
 const cors = require("cors");
 const path = require("path");

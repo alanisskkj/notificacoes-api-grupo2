@@ -1,6 +1,7 @@
 const { Evento } = require('../models');
 const { Op } = require('sequelize');
 const cache = require('../config/cache');
+const appEmitter = require('../events/eventEmitter');
 
 async function listarTodos(opcoes = {}) {
 

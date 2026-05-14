@@ -1,6 +1,8 @@
 // src/services/InscricaoService.js
+const appEmitter = require('../events/eventEmitter');
 const { Inscricao, Evento, Participante } = require('../models');
 const { NotFoundError, ValidationError } = require('../errors/AppError');
+
 
 async function criar(dados) {
     const { eventoId, participanteId } = dados;
@@ -34,6 +36,8 @@ async function criar(dados) {
         evento_id: eventoId,
         participante_id: participanteId,
     });
+
+    appEmitter.emit('inscricao:criada', novaInscricao);
 
     return novaInscricao;
 }
@@ -87,6 +91,9 @@ async function cancelar(id) {
         status: 'cancelada',
     });
 
+    appEmitter.emit('inscricao:cancelada', inscricao);
+
+
     return inscricao;
 }
 
@@ -103,7 +110,6 @@ async function buscarPorId(id) {
     }
     return inscricao;
 }
-
 
 module.exports = {
     criar,
