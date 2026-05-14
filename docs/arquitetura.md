@@ -24,7 +24,7 @@ Cliente (Postman/Browser)
 [MySQL] → Persistência
 ## 3. Entidades e Relacionamentos
 
-| Entidade      | Tabela         | Descrição                                  |
+| Entidade     | Tabela         | Descrição                                  |
 |--------------|----------------|--------------------------------------------|
 | Evento       | eventos        | Representa um evento na plataforma         |
 | Participante | participantes  | Pessoa cadastrada                          |
@@ -138,7 +138,6 @@ src/
 │
 ├── app.js
 └── server.js
-## 7. Variáveis de Ambiente
 
 ---
 
@@ -156,6 +155,3 @@ src/
 ---
 
 > **Capacidade técnica exercitada:** 9 (documentação técnica do sistema)
-> **Capacidade técnica exercitada:** 9 (documentação técnica do sistema)
-### Tempo restante: trabalho técnico
-Use o tempo restante da aula para avançar no projeto PBE (persistência, banco de dados).

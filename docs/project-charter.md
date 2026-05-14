@@ -22,8 +22,8 @@ O sistema resolve a necessidade de comunicação automática com participantes d
 | Nome | Função |
 |------|--------|
 |Alanis | Back-end / Banco de dados |
-|Ana L. | Controllers / Rotas |
-|Isabela | Testes / Documentação |
+|Isabela | Controllers / Rotas |
+|Alanis | Testes / Documentação |
 |Isabele| Deploy, integração e suporte |
 
 ## 6. Tecnologias
@@ -31,7 +31,7 @@ Node.js, Express.js, MySQL, Sequelize, Swagger, Nodemailer, Git/GitHub
 
 ## 7. Prazo
 Início: 03/03/2026 | 
-Entrega final: [Ainda não definido]
+Entrega final: 30/04/2026
 ## 8. Critérios de Sucesso
 - [🆗] API funcional com todos os CRUDs
 - [🆗] Persistência de dados em banco MySQL

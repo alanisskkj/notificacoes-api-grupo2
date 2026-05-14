@@ -1,6 +1,6 @@
 # Sprint Review — Sprint 2
 
-**Período:** 03/03/2026 a [data final] 
+**Período:** 03/03/2026 a 23/04/2026 
 **Participantes:** Alanis, Isabela, Isabele  
 
 ## O que foi planejado
@@ -22,8 +22,8 @@
 
 ## Métricas
 - Cards planejados: 19 
-- Cards concluídos: 18  
-- Taxa de conclusão: 94,7%  
+- Cards concluídos: 19  
+- Taxa de conclusão: 100%  
 
 - Commits por membro:  
   - Alanis: 15  

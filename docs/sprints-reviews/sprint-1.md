@@ -1,5 +1,5 @@
 # Sprint Review — Sprint 1
-**Período:** 03/03/2026 a [data fim]
+**Período:** 03/03/2026 a 23/04/2026
 **Participantes:** Alanis Venerruche, Isabela Viana, Isabele Firmino
 ## O que foi planejado
 - Planejamento do projeto
@@ -25,11 +25,14 @@
 - Commit feito com mensagem descritiva, ainda está pendendo pois o projeto ainda não foi concluído, ou seja, a cada bloco terá que ser feito um novo commit, só será finalizado quando o projeto for terminado.
 ## Métricas
 - Cards planejados: 19
-- Cards concluídos: 18
-- Taxa de conclusão: 94,7%
+- Cards concluídos: 19
+- Taxa de conclusão: 100%
 
 
-- Commits por membro: [Membro 1]: 15, [Membro 2]: 0, [Membro 3]: 0
+- Commits por membro:
+ [Membro 1]: 15
+ [Membro 2]: 0
+ [Membro 3]: 0
 Apenas um membro faz a realização dos commits ao final de todas as alterações.
 ## Impedimentos encontrados
 - Houveram alguns impedimentos na realização do código, inicialmente, devido a falta de revisão de código, a API não rodava, mas após ajustes, o código passou a ser revisado para garantir conformidade.

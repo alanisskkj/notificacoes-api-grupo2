@@ -25,9 +25,7 @@ Comparação:
 
 ## O que poderíamos adotar no futuro?
 
-- Integração com serviços como SendGrid ou Amazon SES
-- Implementação de filas (RabbitMQ ou Kafka)
-- Sistema de templates de e-mail
-- Logs e monitoramento de envio
-- Retry automático em falhas
-- Suporte a múltiplos canais (email, SMS, push)
+- **Nodemailer** — enviar e-mails de verdade (simulados)
+- **Templates de e-mail** — confirmação de inscrição, lembretes
+- **Padrão Observer** — notificar automaticamente quando algo acontece
+- **Regras de negócio** — quando enviar, para quem, histórico
