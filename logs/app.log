@@ -1,6 +1,3 @@
-// src/events/logObserver.js
-const appEmitter = require('./eventEmitter');
-
 appEmitter.on('inscricao:criada', (inscricao) => {
 
   const fs = require('fs');
@@ -10,3 +7,4 @@ appEmitter.on('inscricao:criada', (inscricao) => {
   fs.appendFileSync('logs/app.log', linha);
 
 });
+[2026-05-19T10:57:10.805Z] Inscrição #12 criada

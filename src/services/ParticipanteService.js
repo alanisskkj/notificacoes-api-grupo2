@@ -2,6 +2,8 @@
 const { Participante } = require('../models');
 const { NotFoundError, ValidationError } = require('../errors/AppError');
 
+const appEmitter = require('../events/eventEmitter');
+
 async function listarTodos() {
     const participantes = await Participante.findAll({
         order: [['nome', 'ASC']],
@@ -23,6 +25,9 @@ async function buscarPorId(id) {
 async function criar(dados) {
     try {
         const novoParticipante = await Participante.create(dados);
+
+        appEmitter.emit('participante:criado', novoParticipante);
+
         return novoParticipante;
     } catch (erro) {
         if (erro.name === 'SequelizeValidationError') {

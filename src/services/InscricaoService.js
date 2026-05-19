@@ -3,7 +3,6 @@ const appEmitter = require('../events/eventEmitter');
 const { Inscricao, Evento, Participante } = require('../models');
 const { NotFoundError, ValidationError } = require('../errors/AppError');
 
-
 async function criar(dados) {
     const { eventoId, participanteId } = dados;
 
@@ -40,6 +39,23 @@ async function criar(dados) {
     appEmitter.emit('inscricao:criada', novaInscricao);
 
     return novaInscricao;
+}
+
+async function cancelar(id) {
+    const inscricao = await Inscricao.findByPk(id);
+
+    if (!inscricao) {
+        throw new NotFoundError('Inscricao');
+    }
+
+    await inscricao.update({
+        status: 'cancelada',
+    });
+
+    appEmitter.emit('inscricao:cancelada', inscricao);
+
+
+    return inscricao;
 }
 
 async function listarTodas() {
@@ -80,22 +96,6 @@ async function listarPorEvento(eventoId) {
     return inscricoes;
 }
 
-async function cancelar(id) {
-    const inscricao = await Inscricao.findByPk(id);
-
-    if (!inscricao) {
-        throw new NotFoundError('Inscricao');
-    }
-
-    await inscricao.update({
-        status: 'cancelada',
-    });
-
-    appEmitter.emit('inscricao:cancelada', inscricao);
-
-
-    return inscricao;
-}
 
 async function buscarPorId(id) {
     const inscricao = await Inscricao.findByPk(id, {
