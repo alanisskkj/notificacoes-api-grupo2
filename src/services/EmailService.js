@@ -4,11 +4,17 @@ const nodemailer = require('nodemailer');
 
 let transporter = null;
 
-let contaTeste = null;
+// Endereço do MailPit (configurado via .env)
+
+const SMTP_HOST = process.env.SMTP_HOST || 'MAILPIT_IP';
+
+const SMTP_PORT = process.env.SMTP_PORT || 1025;
+
+const MAILPIT_URL = `http://${SMTP_HOST}:8025`;
 
 /**
 
- * Inicializa o transporter com uma conta de teste do Ethereal.
+ * Inicializa o transporter conectando ao MailPit.
 
  * Chamado uma vez ao iniciar o servidor.
 
@@ -16,41 +22,41 @@ let contaTeste = null;
 
 async function inicializar() {
 
-  // Criar conta de teste automaticamente
-
-  contaTeste = await nodemailer.createTestAccount();
-
-  console.log('═══════════════════════════════════════════');
-
-  console.log('📧 E-mail de teste configurado!');
-
-  console.log(`   Usuário: ${contaTeste.user}`);
-
-  console.log(`   Senha:   ${contaTeste.pass}`);
-
-  console.log(`   Painel:  https://ethereal.email/login`);
-
-  console.log('═══════════════════════════════════════════');
-
-  // Criar o transporter (o "carteiro" que envia os e-mails)
-
   transporter = nodemailer.createTransport({
 
-    host: 'smtp.ethereal.email',
+    host: SMTP_HOST,
 
-    port: 587,
+    port: parseInt(SMTP_PORT),
 
     secure: false,
 
-    auth: {
-
-      user: contaTeste.user,
-
-      pass: contaTeste.pass,
-
-    },
+    tls: { rejectUnauthorized: false },
 
   });
+
+  // Testar a conexão com o MailPit
+
+  try {
+
+    await transporter.verify();
+
+    console.log('═══════════════════════════════════════════');
+
+    console.log('📧 Servidor de e-mail conectado!');
+
+    console.log(`   SMTP: ${SMTP_HOST}:${SMTP_PORT}`);
+
+    console.log(`   Painel: ${MAILPIT_URL}`);
+
+    console.log('═══════════════════════════════════════════');
+
+  } catch (erro) {
+
+    console.error('⚠️ Servidor de e-mail indisponível:', erro.message);
+
+    console.error('   Verifique se o MailPit está rodando e o IP está correto.');
+
+  }
 
 }
 
@@ -64,7 +70,7 @@ async function inicializar() {
 
  * @param {string} html - Conteúdo HTML do e-mail
 
- * @returns {object} Informações do envio, incluindo URL de preview
+ * @returns {object} Informações do envio
 
  */
 
@@ -88,19 +94,15 @@ async function enviar(para, assunto, html) {
 
   });
 
-  // O Ethereal gera uma URL para visualizar o e-mail enviado!
+  console.log(`📧 E-mail enviado para ${para} (ID: ${info.messageId})`);
 
-  const previewUrl = nodemailer.getTestMessageUrl(info);
-
-  console.log(`📧 E-mail enviado para ${para}`);
-
-  console.log(`   Preview: ${previewUrl}`);
+  console.log(`   Visualizar em: ${MAILPIT_URL}`);
 
   return {
 
     messageId: info.messageId,
 
-    previewUrl: previewUrl,
+    visualizarEm: MAILPIT_URL,
 
   };
 

@@ -39,3 +39,4 @@ async function iniciar() {
 }
 
 iniciar();
+

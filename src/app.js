@@ -1,10 +1,9 @@
 
-// Registrar observers (basta importar para ativar)
-
 require('./events/eventoObserver');
 require('./events/notificacaoObserver');
 require('./events/logObserver');
 require('./events/notificacaoObserver');
+require('./events/participanteObserver');
 
 const express = require("express");
 const cors = require("cors");
@@ -18,6 +17,7 @@ const eventoRoutes = require("./routes/eventoRoutes");
 const participanteRoutes = require("./routes/participanteRoutes");
 const inscricaoRoutes = require("./routes/inscricaoRoutes");
 const exportRoutes = require("./routes/exportRoutes");
+const notificacaoRoutes = require("./routes/notificacaoRoutes");
 
 // MIDDLEWARES
 const responseTime = require("./middlewares/responseTime");
@@ -47,6 +47,7 @@ app.use("/eventos", eventoRoutes);
 app.use("/participantes", participanteRoutes);
 app.use("/inscricoes", inscricaoRoutes);
 app.use("/exportar", exportRoutes);
+app.use("/notificacoes", notificacaoRoutes);
 
 // ============================================
 // ROTA RAIZ

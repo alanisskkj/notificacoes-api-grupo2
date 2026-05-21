@@ -557,6 +557,61 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Teste notificação",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "http://localhost:3000/inscricoes/16/cancelar",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/inscricoes/16/cancelar",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes",
+                "16",
+                "cancelar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Observer adicionar inscrição",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventoId\": 15,\r\n  \"participanteId\": 19\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/inscricoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -661,28 +716,73 @@
       ]
     },
     {
-      "name": "http://localhost:3000/inscricoes/16/cancelar",
-      "request": {
-        "auth": {
-          "type": "noauth"
+      "name": "Notificações",
+      "item": [
+        {
+          "name": "Participantes",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Carlos Santos\",\r\n  \"email\": \"carlos@teste.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/participantes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "participantes"
+              ]
+            }
+          },
+          "response": []
         },
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:3000/inscricoes/16/cancelar",
-          "protocol": "http",
-          "host": [
-            "localhost"
-          ],
-          "port": "3000",
-          "path": [
-            "inscricoes",
-            "16",
-            "cancelar"
-          ]
+        {
+          "name": "Inscrições",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"eventoId\": 16,\r\n  \"participanteId\": 20\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/inscricoes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "inscricoes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Notificação",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
         }
-      },
-      "response": []
+      ]
     }
   ]
 }

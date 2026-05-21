@@ -18,7 +18,7 @@ router.post('/teste-email', async (req, res, next) => {
 
       'Teste da API de Notificações',
 
-      '<h1>Funcionou! 🎉</h1><p>Este e-mail foi enviado pela nossa API.</p>'
+      '<h1>Funcionou! 🎉</h1><p>Este e-mail foi enviado pela nossa API Grupo 2.</p>'
 
     );
 
@@ -26,7 +26,7 @@ router.post('/teste-email', async (req, res, next) => {
 
       mensagem: 'E-mail de teste enviado!',
 
-      previewUrl: resultado.previewUrl,
+      visualizarEm: resultado.visualizarEm,
 
     });
 
@@ -37,6 +37,7 @@ router.post('/teste-email', async (req, res, next) => {
   }
 
 });
+
 
 router.get('/', async (req, res, next) => {
 

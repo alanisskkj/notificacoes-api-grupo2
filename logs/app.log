@@ -8,3 +8,5 @@ appEmitter.on('inscricao:criada', (inscricao) => {
 
 });
 [2026-05-19T10:57:10.805Z] Inscrição #12 criada
+[2026-05-21T14:38:26.057Z] Inscrição #13 criada
+[2026-05-21T15:58:18.369Z] Inscrição #14 criada
