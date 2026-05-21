@@ -107,7 +107,6 @@ appEmitter.on('inscricao:cancelada', async (inscricao) => {
     const { evento, participante } = dados;
 
     const assunto = `Inscrição cancelada: ${evento.nome}`;
-
     const html = cancelamentoInscricao({
 
       participanteNome: participante.nome,
