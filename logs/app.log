@@ -10,3 +10,14 @@ appEmitter.on('inscricao:criada', (inscricao) => {
 [2026-05-19T10:57:10.805Z] Inscrição #12 criada
 [2026-05-21T14:38:26.057Z] Inscrição #13 criada
 [2026-05-21T15:58:18.369Z] Inscrição #14 criada
+[2026-05-26T11:02:39.229Z] Inscrição #15 criada
+[2026-05-26T11:57:33.155Z] Inscrição #16 criada
+[2026-05-26T13:39:35.562Z] Inscrição #1 criada
+[2026-05-26T13:39:42.429Z] Inscrição #2 criada
+[2026-05-26T13:39:50.298Z] Inscrição #3 criada
+[2026-05-26T13:39:56.497Z] Inscrição #4 criada
+[2026-05-26T13:40:02.482Z] Inscrição #5 criada
+[2026-05-26T13:40:30.835Z] Inscrição #6 criada
+[2026-05-26T13:41:07.014Z] Inscrição #7 criada
+[2026-05-26T13:41:16.269Z] Inscrição #8 criada
+[2026-05-26T13:41:33.628Z] Inscrição #9 criada

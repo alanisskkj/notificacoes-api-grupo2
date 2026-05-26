@@ -11,32 +11,25 @@ const confirmacaoInscricao = require('../templates/email/confirmacaoInscricao');
 const cancelamentoInscricao = require('../templates/email/cancelamentoInscricao');
 
 // Helper para buscar dados completos da inscrição
-
 async function buscarDadosInscricao(inscricaoId) {
 
   return await Inscricao.findByPk(inscricaoId, {
-
     include: [
-
       { model: Evento, as: 'evento' },
-
       { model: Participante, as: 'participante' },
-
     ],
-
   });
 
 }
 
 // Helper para salvar notificação no banco
-
 async function salvarNotificacao(dados) {
 
   return await Notificacao.create(dados);
 
 }
 
-// ── OBSERVER: Inscrição criada ──
+// OBSERVER: Inscrição criada
 
 appEmitter.on('inscricao:criada', async (inscricao) => {
 
@@ -50,41 +43,45 @@ appEmitter.on('inscricao:criada', async (inscricao) => {
 
     const assunto = `Inscrição confirmada: ${evento.nome}`;
 
-    const html = confirmacaoInscricao({
-
-      participanteNome: participante.nome,
-
-      eventoNome: evento.nome,
-
-      eventoData: evento.data,
-
-      eventoLocal: evento.local,
-
+    // Verificar duplicata
+    const jaNotificado = await Notificacao.findOne({
+      where: {
+        inscricao_id: inscricao.id,
+        tipo: 'confirmacao',
+      }
     });
 
-    const resultado = await EmailService.enviar(participante.email, assunto, html);
+    if (jaNotificado) {
+      console.log('[NOTIFICAÇÃO] Confirmação já enviada, ignorando duplicata');
+      return;
+    }
+
+    const html = confirmacaoInscricao({
+      participanteNome: participante.nome,
+      eventoNome: evento.nome,
+      eventoData: evento.data,
+      eventoLocal: evento.local,
+    });
+
+    const resultado = await EmailService.enviar(
+      participante.email,
+      assunto,
+      html
+    );
 
     await salvarNotificacao({
-
       inscricao_id: inscricao.id,
-
       tipo: 'confirmacao',
-
-      destinatario_email: participante.email,
-
+      destinatarioEmail: participante.email,
       assunto,
-
       conteudo: html,
-
-      data_envio: new Date(),
-
+      dataEnvio: new Date(),
       enviada: true,
-
     });
 
     console.log(`[NOTIFICAÇÃO] Confirmação enviada para ${participante.email}`);
 
-    console.log(`   Visualizar em: ${resultado.visualizarEm}`);
+    console.log(`Visualizar em: ${resultado.visualizarEm}`);
 
   } catch (erro) {
 
@@ -94,7 +91,7 @@ appEmitter.on('inscricao:criada', async (inscricao) => {
 
 });
 
-// ── OBSERVER: Inscrição cancelada ──
+// OBSERVER: Inscrição cancelada
 
 appEmitter.on('inscricao:cancelada', async (inscricao) => {
 
@@ -107,37 +104,31 @@ appEmitter.on('inscricao:cancelada', async (inscricao) => {
     const { evento, participante } = dados;
 
     const assunto = `Inscrição cancelada: ${evento.nome}`;
+
     const html = cancelamentoInscricao({
-
       participanteNome: participante.nome,
-
       eventoNome: evento.nome,
-
     });
 
-    const resultado = await EmailService.enviar(participante.email, assunto, html);
+    const resultado = await EmailService.enviar(
+      participante.email,
+      assunto,
+      html
+    );
 
     await salvarNotificacao({
-
       inscricao_id: inscricao.id,
-
-      tipo: 'confirmacao',
-
-      destinatario_email: participante.email,
-
+      tipo: 'cancelamento',
+      destinatarioEmail: participante.email,
       assunto,
-
       conteudo: html,
-
-      data_envio: new Date(),
-
+      dataEnvio: new Date(),
       enviada: true,
-
     });
 
     console.log(`[NOTIFICAÇÃO] Cancelamento enviado para ${participante.email}`);
 
-    console.log(`   Visualizar em: ${resultado.visualizarEm}`);
+    console.log(`Visualizar em: ${resultado.visualizarEm}`);
 
   } catch (erro) {
 

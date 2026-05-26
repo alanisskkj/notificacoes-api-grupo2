@@ -1,8 +1,7 @@
-
+// app.js
 require('./events/eventoObserver');
 require('./events/notificacaoObserver');
 require('./events/logObserver');
-require('./events/notificacaoObserver');
 require('./events/participanteObserver');
 
 const express = require("express");

@@ -9,7 +9,7 @@ const Notificacao = sequelize.define(
             autoIncrement: true,
         },
         tipo: {
-            type: DataTypes.ENUM("confirmacao", "lembrete"),
+            type: DataTypes.ENUM("confirmacao", "lembrete, cancelamento"),
             allowNull: false,
         },
         destinatarioEmail: {

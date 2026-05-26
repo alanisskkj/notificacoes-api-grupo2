@@ -1,6 +1,11 @@
 # Relatório Técnico — API de Notificações 
 **Grupo:** 2 
-**Membros:** Alanis Venerruche de Carvalho, Isabela Dessia Viana e Isabele Gonzales Firmino
+---
+**Membros:** 
+- Alanis Venerruche de Carvalho
+- Isabela Dessia Viana
+- Isabele Gonzales Firmino
+
 **Data:** 21/05/2026 
 --- 
 
@@ -104,7 +109,6 @@ Os principais relacionamentos são:
 -> Um participante possui várias inscrições;
 -> Uma inscrição pode possuir várias notificações.
 As associações foram implementadas com Sequelize, organizando e relacionando os dados.
---- 
 
 ## 4. Funcionalidades Implementadas 
 | Funcionalidade | Status | Bloco PBE | | --------------------------------- | ----------- | --------- | | CRUD de Eventos | ✅ Completo | 1 e 3 | | CRUD de Participantes | ✅ Completo | 1 e 3 | | Inscrições | ✅ Completo | 1 e 3 | | Middlewares e tratamento de erros | ✅ Completo | 2 | | Validação de dados | ✅ Completo | 2 | | Persistência MySQL | ✅ Completo | 3 | | Exportação JSON/XML | ✅ Completo | 3 | | Upload de arquivos | ✅ Completo | 3 | | Notificações por e-mail | [status] | 4 | | Deploy | [status] | 5 | | Documentação Swagger | [status] | 5 | 
