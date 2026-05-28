@@ -618,6 +618,34 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Notificação por ID",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Notificação teste",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/notificacoes/teste-email",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "notificacoes",
+                "teste-email"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     }
