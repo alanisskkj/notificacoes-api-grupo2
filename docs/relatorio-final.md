@@ -1,27 +1,25 @@
-# Relatório Técnico — API de Notificações 
+## Relatório Técnico — API de Notificações 
 **Grupo:** 2 
----
 **Membros:** 
 - Alanis Venerruche de Carvalho
 - Isabela Dessia Viana
 - Isabele Gonzales Firmino
 
-**Data:** 21/05/2026 
+**Data:** 21/05/2026
 --- 
 
 ## 1. Introdução 
 O projeto consiste em uma plataforma de gerenciamento de eventos online, no qual permite que organizadores criem eventos e que participantes se inscrevam neles. O módulo específico é o Sistema de Notificações por e-mail, no qual ele deve:
 - Enviar um e-mail de confirmação quando alguém se inscrever em um evento
 - Enviar um e-mail de lembrete antes do evento acontecer
-- Manter um histórico de todas as notificações enviadas
+- Manter um histórico de todas as notificações enviadas.
 
-
-### 1.1 Objetivo do Projeto 
+## 1.1 Objetivo do Projeto 
 Gerência eventos, notificações, participantes e inscrições de forma automática. Permite cadastrar os mesmos e organizar no banco de dados.
 Projetos que antes eram manuais passam a ser automatizados, o que reduz os erros e melhora a experiência do usuário.
+---
 
-
-### 1.2 Escopo 
+## 1.2 Escopo 
 Incluído no projeto:
 Cadastro de usuários
 Cadastro e armazenamento de documentos técnicos
@@ -34,7 +32,7 @@ Integração com outros sistemas
 Relatórios avançados
 Notificação automática
 Recursos extras que poderão ser adicionados em futuras versões;
-
+---
 
 ## 2. Tecnologias Utilizadas 
 # Infraestrutura e Dependências
@@ -89,38 +87,40 @@ Cliente (Postman/Browser)
 [MySQL] → Persistência
 
 
-### 3.1 Diagrama de Classes 
-[Referência ao diagrama UML em docs/] 
+## 3.1 Diagrama de Classes 
+Ao início do projeto, foi realizado a construção de um diagrama de classes UML, o qual foi usado como base para o projeto antes de realizar a codificação.
+- Compreender a Situação de Aprendizagem (SA)
+- Identificar as entidades do sistema
+- Criar um diagrama de classes UML completo no draw.io
 
-
-### 3.2 Arquitetura em Camadas 
+## 3.2 Arquitetura em Camadas 
 Utilizamos a arquitetura de camadas para separar as responsabilidades e facilitar a organização:
 -> Routes: responsável por mapear as URL direcionar as requisições para os controllers correspondentes. 
 -> Controllers: recebem as requisições HTTP, extraem os dados enviados pelo cliente e chamam os services responsáveis pela lógica da aplicação. 
 -> Services: concentram as regras de negócio, validação, integração e processamento das informações antes de acessar o banco de dados. 
 -> Models: implementados com Sequelize, representam as tabelas do banco de dados e realizam as operações de persistência. 
 -> MySQL: é utilizado como sistema gerenciador de banco de dados, armazenando eventos, participantes, inscrições e notificações de forma permanente e estruturada. 
+---
 
-
-### 3.3 Banco de Dados
+## 3.3 Banco de Dados
 O banco de dados foi desenvolvido em MySQL utilizando Sequelize como ORM. O sistema possui quatro tabelas principais: eventos, participantes, inscrições e notificações.
 Os principais relacionamentos são:
 -> Um evento possui várias inscrições;
 -> Um participante possui várias inscrições;
 -> Uma inscrição pode possuir várias notificações.
 As associações foram implementadas com Sequelize, organizando e relacionando os dados.
+---
 
 ## 4. Funcionalidades Implementadas 
 | Funcionalidade | Status | Bloco PBE | | --------------------------------- | ----------- | --------- | | CRUD de Eventos | ✅ Completo | 1 e 3 | | CRUD de Participantes | ✅ Completo | 1 e 3 | | Inscrições | ✅ Completo | 1 e 3 | | Middlewares e tratamento de erros | ✅ Completo | 2 | | Validação de dados | ✅ Completo | 2 | | Persistência MySQL | ✅ Completo | 3 | | Exportação JSON/XML | ✅ Completo | 3 | | Upload de arquivos | ✅ Completo | 3 | | Notificações por e-mail | [status] | 4 | | Deploy | [status] | 5 | | Documentação Swagger | [status] | 5 | 
---- 
 
 ## 5. Processo de Desenvolvimento 
-## 1. Planejamento
+# 1. Planejamento
 - 1.1 Levantamento de requisitos
 - 1.2 Diagrama de classes UML
 - 1.3 Definição de tecnologias
 - 1.4 Configuração do ambiente
-## 2. Desenvolvimento — Base
+# 2. Desenvolvimento — Base
 - 2.1 Estrutura MVC do projeto
 - 2.2 CRUD de Eventos
 - 2.3 CRUD de Participantes
@@ -128,7 +128,7 @@ As associações foram implementadas com Sequelize, organizando e relacionando o
 - 2.5 Middlewares e tratamento de erros
 - 2.6 Camada de Services
 - 2.7 Validações
-## 3. Desenvolvimento — Persistência
+# 3. Desenvolvimento — Persistência
 - 3.1 Configuração do MySQL
 - 3.2 Models Sequelize
 - 3.3 Migrations e Seeds
@@ -156,9 +156,9 @@ O projeto foi desenvolvido utilizando metodologia ágil, com organização das a
 ### 5.2 Divisão de Trabalho 
 | Nome | Função/Responsabilidade |
 |------|------------------------|
-| Isabele | Líder técnico, responsável pelo banco |
-| Isabela | Responsável pela documentação |
-| Alanis | Responsável pelos testes |
+| Isabele | Líder técnico, responsável pelo banco e pela construção do código |
+| Isabela | Responsável pelo banco de dados |
+| Alanis | Responsável pelos testes e documentação do projeto |
 
 
 ### 5.3 Controle de Versão 
@@ -184,10 +184,9 @@ O controle de versão do projeto foi realizado utilizando Git e GitHub durante t
 
 ## 7. Lições Aprendidas 
 Aprendemos conceitos importantes relacionados a desenvolvimento de back-end.
-  Com a utilização de criação de APIs REST com Node.js e Express, organização de projetos utilizando arquitetura MVC + Services, utilização do Sequelize para integração com banco de dados MySQL e criação de migrations e relacionamentos entre tabelas. 
+Com a utilização de criação de APIs REST com Node.js e Express, organização de projetos utilizando arquitetura MVC + Services, utilização do Sequelize para integração com banco de dados MySQL e criação de migrations e relacionamentos entre tabelas. 
 Proporcionou aprendizado sobre as revisões de códigos para realizarmos os testes da API e enviarmos ao GitHub no fim de cada fase.
 --- 
-
 
 ## 8. Próximos Passos (se o projeto continuasse) 
 Caso o projeto tivesse continuidade, seriam implementadas novas funcionalidades, como sistema de autenticação de usuários, melhorias no front-end para tornar a interface mais intuitiva, implementação de notificação push, otimização do desempenho do aplicativo e edição de novos recursos para melhorar a experiência dos usuários.
