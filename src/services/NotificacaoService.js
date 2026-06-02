@@ -4,9 +4,7 @@ const { Notificacao, Inscricao, Evento, Participante } = require('../models');
 
 const EmailService = require('./EmailService');
 
-const { NotFoundError, ValidationError } = require('../errors/AppError');
-
-const confirmacaoInscricao = require('../templates/email/confirmacaoInscricao');
+const { NotFoundError } = require("../errors/AppError");
 
 async function listarTodas(filtros = {}) {
 
@@ -94,25 +92,21 @@ async function reenviar(id) {
 
   const html = notificacao.conteudo;
 
-  const resultado = await EmailService.enviar(
+  const resultado =
 
-    notificacao.destinatario_email,
+    await EmailService.enviar
 
-    notificacao.assunto,
+      (notificacao.destinatarioEmail,
 
-    html
+        notificacao.assunto,
 
-  );
+        html
+
+      );
 
   // Atualizar registro
 
-  await notificacao.update({
-
-    enviada: true,
-
-    data_envio: new Date(),
-
-  });
+  await notificacao.update({ enviada: true, dataEnvio: new Date(), });
 
   return {
 

@@ -66,6 +66,10 @@ router.get("/", ParticipanteController.index);
  *               $ref: '#/components/schemas/Participante'
  *       404:
  *         description: Participante não encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Erro'
  */
 router.get("/:id", ParticipanteController.show);
 
@@ -86,6 +90,10 @@ router.get("/:id", ParticipanteController.show);
  *         description: Participante criado com sucesso
  *       400:
  *         description: Dados inválidos (nome e email obrigatórios)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Erro'
  */
 router.post("/", ParticipanteController.store);
 
@@ -112,6 +120,10 @@ router.post("/", ParticipanteController.store);
  *         description: Participante atualizado com sucesso
  *       404:
  *         description: Participante não encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Erro'
  */
 router.put("/:id", ParticipanteController.update);
 
@@ -132,6 +144,10 @@ router.put("/:id", ParticipanteController.update);
  *         description: Participante deletado com sucesso
  *       404:
  *         description: Participante não encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Erro'
  */
 router.delete("/:id", ParticipanteController.destroy);
 

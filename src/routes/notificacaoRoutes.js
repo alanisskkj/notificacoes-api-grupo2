@@ -49,6 +49,12 @@ const EmailService = require('../services/EmailService');
  *     responses:
  *       200:
  *         description: Lista de notificações
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Notificacao'
  */
 
 // GET /notificacoes — listar com filtros
@@ -101,6 +107,29 @@ router.get('/estatisticas', async (req, res, next) => {
   }
 
 });
+
+/**
+ * @swagger
+ * /notificacoes/{id}:
+ *   get:
+ *     summary: Buscar notificação por ID
+ *     tags: [Notificações]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Notificação encontrada
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Notificacao'
+ *       404:
+ *         description: Notificação não encontrada
+ */
 
 // GET /notificacoes/:id — detalhes de uma notificação
 router.get('/:id', async (req, res, next) => {
@@ -160,6 +189,17 @@ router.post('/:id/reenviar', async (req, res, next) => {
   }
 
 });
+
+/**
+ * @swagger
+ * /notificacoes/teste-email:
+ *   post:
+ *     summary: Enviar e-mail de teste
+ *     tags: [Notificações]
+ *     responses:
+ *       200:
+ *         description: E-mail enviado com sucesso
+ */
 
 // POST /notificacoes/teste-email — enviar e-mail de teste
 router.post('/teste-email', async (req, res, next) => {

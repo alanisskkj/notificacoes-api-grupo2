@@ -4,6 +4,16 @@ const router = express.Router();
 const { Evento, Participante, Inscricao } = require('../models');
 const { create } = require('xmlbuilder2');
 
+/**
+ * @swagger
+ * /exportar/eventos/xml:
+ *   get:
+ *     summary: Exportar eventos em XML
+ *     tags: [Exportação]
+ *     responses:
+ *       200:
+ *         description: Arquivo XML gerado com sucesso
+ */
 router.get('/eventos/xml', async (req, res, next) => {
   try {
     const eventos = await Evento.findAll({ order: [['data', 'ASC']] });
@@ -29,6 +39,16 @@ router.get('/eventos/xml', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /exportar/eventos/json:
+ *   get:
+ *     summary: Exportar eventos em JSON
+ *     tags: [Exportação]
+ *     responses:
+ *       200:
+ *         description: Arquivo JSON gerado com sucesso
+ */
 router.get('/eventos/json', async (req, res, next) => {
   try {
     const eventos = await Evento.findAll({ raw: true });
@@ -42,6 +62,16 @@ router.get('/eventos/json', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /exportar/inscricoes/xml:
+ *   get:
+ *     summary: Exportar inscrições em XML
+ *     tags: [Exportação]
+ *     responses:
+ *       200:
+ *         description: Arquivo XML gerado com sucesso
+ */
 router.get('/inscricoes/xml', async (req, res, next) => {
   try {
     const inscricoes = await Inscricao.findAll({
@@ -76,6 +106,16 @@ router.get('/inscricoes/xml', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /exportar/relatorio/inscricoes:
+ *   get:
+ *     summary: Gerar relatório de inscrições
+ *     tags: [Exportação]
+ *     responses:
+ *       200:
+ *         description: Relatório gerado com sucesso
+ */
 router.get('/relatorio/inscricoes', async (req, res, next) => {
   try {
     const eventos = await Evento.findAll({
@@ -117,6 +157,16 @@ router.get('/relatorio/inscricoes', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * /exportar/relatorio/inscricoes/csv:
+ *   get:
+ *     summary: Exportar relatório de inscrições em CSV
+ *     tags: [Exportação]
+ *     responses:
+ *       200:
+ *         description: Arquivo CSV gerado com sucesso
+ */
 router.get('/relatorio/inscricoes/csv', async (req, res, next) => {
   try {
     const inscricoes = await Inscricao.findAll({
