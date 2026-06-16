@@ -5,7 +5,7 @@
 - Isabela Dessia Viana
 - Isabele Gonzales Firmino
 
-**Data:** 21/05/2026
+**Data:** 16/06/2026
 --- 
 
 ## 1. Introdução 
@@ -32,6 +32,41 @@ Integração com outros sistemas
 Relatórios avançados
 Notificação automática
 Recursos extras que poderão ser adicionados em futuras versões;
+
+## 1.3 O que foi entregue
+- Padrão MVC + Estrutura do Projeto
+- CRUD de Eventos no Padrão MVC + Postman
+- CRUD de Participantes + Inscrições
+- Documentação com Swagger + Testes no Postman
+- Introdução de Frameworks e Middlewares
+- Middlewares Customizados + Tratamento Centralizado de Erros
+- Validação de Dados
+- Escopo do Projeto
+- Camada Services, Variáveis de Ambiente e Clean Code
+- Banco de Dados Relacional + Configuração do MySQL
+- Sequelize: Configuração e Models
+- O código está funcionando (testado manualmente)
+- Segue o padrão MVC + Services
+- Erros são tratados com classes customizadas
+- Validações estão implementadas
+- A rota está documentada no Swagger
+- Pelo menos um outro membro revisou o código
+- Migrations e Seeds
+- CRUD com Sequelize
+- Manipulação de JSON e Exportação em XML
+- Upload de Arquivos + Geração de Relatórios
+- Cache em Memória + Consolidação
+- Revisão Final e Entrega do Bloco 3
+- Padrão Observer + Introdução ao Módulo de Notificações
+- Nodemailer: Enviando E-mails com Mailpit
+- Templates de E-mail + Confirmação de Inscrição
+- Regras de Negócio e Histórico de Notificações
+- Integração Completa + Testes
+- Ajustes Finais e Entrega do Bloco 4
+- Swagger Completo: Documentação de Toda a API
+- Conceitos de Deploy + Acesso SSH ao Servidor
+- Workshop de Deploy: Instalação e Publicação no Servidor
+- README Final, Testes e Organização do Git
 ---
 
 ## 2. Tecnologias Utilizadas 

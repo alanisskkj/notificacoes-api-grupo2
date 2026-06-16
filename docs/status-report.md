@@ -1,14 +1,14 @@
 # Status Report — API de Notificações
-**Data:** [14/05/2026]
+**Data:** [16/06/2026]
 **Grupo:** [2]
 ## Progresso Geral
 | Fase da WBS | Status | % Concluído |
 | --------------------------------- | --------------- | ----------- |
 | 1. Planejamento | ✅ Concluído | 100% |
 | 2. Desenvolvimento — Base | ✅ Concluído | 100% |
-| 3. Desenvolvimento — Persistência | 🟡 Em progresso | [X%] |
-| 4. Desenvolvimento — Notificações | ⬜ Não iniciado | 0% |
-| 5. Finalização | ⬜ Não iniciado | 0% |
+| 3. Desenvolvimento — Persistência | ✅ Concluído | 100% |
+| 4. Desenvolvimento — Notificações | ✅ Concluído | 100% |
+| 5. Finalização | ✅ Concluído | 100% |
 ## Riscos Atualizados
 [Os riscos identificados na Fase A se materializaram? Novos riscos?]
 Todo o código foi revisado por pelo menos uma pessoa do grupo, para que não tenha riscos  futuros que impactem o desenvolvimento do projeto.
@@ -19,4 +19,4 @@ O projeto não possuí atrasos, as documentações estão atualizadas e os códi
 
 ## Próximos Passos
 [O que precisa ser feito nas próximas semanas]
-Nas próximas semanas será iniciado o desnevolvimento do módulo de notificações, ou seja, e-mails serão enviados de verdade, haverá confirmação de inscrição e lembretes, além da aplicaçãi das regras de negócio.
+Nas semanas seguintes foram realizados os ajustes finais na documentação da API, realização de testes e revisão do código, além do polimento do repósitorio para que qualquer pessoas consiga entender e rodar o projeto, garantindo que tudo funciona.

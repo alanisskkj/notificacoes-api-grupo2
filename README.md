@@ -171,6 +171,13 @@ src/
 |── errors/
 │ ├── AppError.js
 |
+├── events/
+│ ├── eventEmitter.js
+│ ├── evento.Observer.js
+│ ├── logObserver.js
+│ ├── notificacaoObserver.js
+│ ├── participanteObserver.js
+│
 |── helpers/
 │ ├── parseId.js
 │ ├── validators.js
@@ -180,6 +187,10 @@ src/
 │ ├── participanteService.js
 │ ├── inscricaoService.js
 │
+├── migrations/
+│
+├── templates/
+|
 ├── models/
 │ ├── Evento.js
 │ ├── Participante.js
@@ -198,6 +209,8 @@ src/
 │ ├── logger.js
 │ ├── notFound.js
 │ ├── responseTime.js
+│
+├── uploads/
 │
 ├── app.js
 |── server.js

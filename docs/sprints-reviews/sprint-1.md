@@ -22,15 +22,16 @@
 - A rota está documentada no Swagger
 - Pelo menos um outro membro revisou o código
 ## O que ficou pendente
-- Commit feito com mensagem descritiva, ainda está pendendo pois o projeto ainda não foi concluído, ou seja, a cada bloco terá que ser feito um novo commit, só será finalizado quando o projeto for terminado.
+- [].
+
 ## Métricas
-- Cards planejados: 19
-- Cards concluídos: 19
+- Cards planejados: 35
+- Cards concluídos: 35
 - Taxa de conclusão: 100%
 
 
 - Commits por membro:
- [Membro 1]: 15
+ [Membro 1]: 29
  [Membro 2]: 0
  [Membro 3]: 0
 Apenas um membro faz a realização dos commits ao final de todas as alterações.
