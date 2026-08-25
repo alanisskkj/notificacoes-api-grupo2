@@ -4,6 +4,8 @@ const Evento = require("./EventoModel");
 const Participante = require("./ParticipanteModel");
 const Inscricao = require("./InscricaoModel");
 const Notificacao = require("./NotificacaoModel");
+const Usuario = require("./UsuarioModel");
+// ... (não precisa de relcionamento com as outras entidades)
 // ── Relacionamentos ──
 // Um Evento tem muitas Inscrições
 Evento.hasMany(Inscricao, { foreignKey: "evento_id", as: "inscricoes" });
@@ -32,4 +34,5 @@ module.exports = {
     Participante,
     Inscricao,
     Notificacao,
+    Usuario,
 };

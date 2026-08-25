@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
+const authMiddleware = require("../middlewares/authMiddleware");
 
 const EventoController = require("../controllers/EventoController");
 const upload = require("../config/upload");
 const { Evento } = require("../models");
-const cacheMiddleware = require('../middlewares/cacheMiddleware');
+const cacheMiddleware = require("../middlewares/cacheMiddleware");
 
 /**
  * @swagger
@@ -55,7 +56,23 @@ const cacheMiddleware = require('../middlewares/cacheMiddleware');
  *       200:
  *         description: Lista de eventos
  */
-router.get('/', cacheMiddleware(30), EventoController.index);
+router.get("/", cacheMiddleware(30), EventoController.index);
+
+/**
+ * @swagger
+ * /eventos/futuros:
+ *   get:
+ *     summary: Listar eventos futuros
+ *     tags: [Eventos]
+ *     responses:
+ *       200:
+ *         description: Lista de eventos futuros
+ */
+router.get(
+  "/futuros",
+  cacheMiddleware(30),
+  EventoController.listarFuturos
+);
 
 /**
  * @swagger
@@ -75,7 +92,7 @@ router.get('/', cacheMiddleware(30), EventoController.index);
  *       404:
  *         description: Evento não encontrado
  */
-router.get('/:id', cacheMiddleware(60), EventoController.show);
+router.get("/:id", cacheMiddleware(60), EventoController.show);
 
 /**
  * @swagger
@@ -93,7 +110,7 @@ router.get('/:id', cacheMiddleware(60), EventoController.show);
  *       201:
  *         description: Evento criado
  */
-router.post("/", EventoController.store);
+router.post("/", authMiddleware, EventoController.store);
 
 /**
  * @swagger
@@ -113,7 +130,7 @@ router.post("/", EventoController.store);
  *       404:
  *         description: Evento não encontrado
  */
-router.put("/:id", EventoController.update);
+router.put("/:id", authMiddleware, EventoController.update);
 
 /**
  * @swagger
@@ -133,7 +150,7 @@ router.put("/:id", EventoController.update);
  *       404:
  *         description: Evento não encontrado
  */
-router.delete("/:id", EventoController.destroy);
+router.delete("/:id", authMiddleware, EventoController.destroy);
 
 /**
  * @swagger
@@ -166,36 +183,41 @@ router.delete("/:id", EventoController.destroy);
  *       404:
  *         description: Evento não encontrado
  */
-router.post("/:id/banner", upload.single("banner"), async (req, res, next) => {
-  try {
-    const evento = await Evento.findByPk(req.params.id);
+router.post(
+  "/:id/banner",
+  authMiddleware,
+  upload.single("banner"),
+  async (req, res, next) => {
+    try {
+      const evento = await Evento.findByPk(req.params.id);
 
-    if (!evento) {
-      return res.status(404).json({
-        erro: "Evento não encontrado",
+      if (!evento) {
+        return res.status(404).json({
+          erro: "Evento não encontrado",
+        });
+      }
+
+      if (!req.file) {
+        return res.status(400).json({
+          erro: "Nenhum arquivo enviado",
+        });
+      }
+
+      const caminho = `/uploads/${req.file.filename}`;
+
+      await evento.update({
+        banner: caminho,
       });
-    }
 
-    if (!req.file) {
-      return res.status(400).json({
-        erro: "Nenhum arquivo enviado",
+      res.json({
+        mensagem: "Banner atualizado com sucesso",
+        banner: caminho,
       });
+
+    } catch (erro) {
+      next(erro);
     }
-
-    const caminho = `/uploads/${req.file.filename}`;
-
-    await evento.update({
-      banner: caminho,
-    });
-
-    res.json({
-      mensagem: "Banner atualizado com sucesso",
-      banner: caminho,
-    });
-
-  } catch (erro) {
-    next(erro);
   }
-});
+);
 
 module.exports = router;
