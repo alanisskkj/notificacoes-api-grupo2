@@ -155,4 +155,46 @@ Se o mesmo banco for utilizado, o risco é alto porque os testes podem sobrescre
 | Suíte completa em execução | Até 11/11/2026 | Grupo | Suíte pronta antes da avaliação |
 | Início da avaliação somativa individual | 12/11/2026 | — | Marco da avaliação |
 
+## 9. Registro de execução dos testes unitários
+
+Este registro apresenta a execução prática da primeira versão da suíte unitária, com foco nos validadores e no helper responsável por converter IDs recebidos pela API.
+
+**Aluno:** Alanis Venerruche de Carvalho  
+**Grupo:** 2  
+**Data da execução:** 24/09/2026
+
+### 9.1 Testes escritos
+
+| # | Arquivo | O que o teste verifica | Tipo | Resultado |
+| --- | --- | --- | --- | --- |
+| 1 | `tests/unit/validators.test.js` | Aceita um e-mail válido | Sucesso | Passou |
+| 2 | `tests/unit/validators.test.js` | Rejeita e-mail sem `@` | Falha | Passou |
+| 3 | `tests/unit/validators.test.js` | Aceita nome com exatamente o tamanho mínimo | Borda | Passou |
+| 4 | `tests/unit/parseId.test.js` | Rejeita ID não numérico (`abc`) | Falha | Passou |
+| 5 | `tests/unit/parseId.test.js` | Rejeita ID parcialmente numérico (`12abc`) | Falha | Falhou |
+| 6 | `tests/unit/ambiente.test.js` | Confirma a configuração básica do ambiente de testes | Sucesso | Passou |
+
+### 9.2 Resultado da execução
+
+- **Total:** 6 testes
+- **Passaram:** 5 testes
+- **Falharam:** 1 teste
+- **Taxa de aprovação:** 83,3%
+
+### 9.3 Defeito encontrado
+
+O teste `parseId › rejeita um id parcialmente numérico como '12abc'` esperava que fosse lançada uma `ValidationError`, mas nenhum erro foi lançado e o valor retornado foi `12`.
+
+**Causa provável:** a implementação atual utiliza `parseInt`, que aceita o prefixo numérico de uma string e ignora os caracteres seguintes. Portanto, `parseInt("12abc")` retorna `12`.
+
+**Correção necessária:** validar se o valor inteiro recebido possui somente dígitos antes de convertê-lo, rejeitando entradas parcialmente numéricas.
+
+**Critério de aceite da correção:** os seis testes devem passar, inclusive os casos `abc` e `12abc`, que devem lançar `ValidationError`.
+
+### 9.4 Cobertura
+
+A cobertura registrada foi de **60% de Lines** no diretório `helpers`. Isso significa que 60% das linhas de código dos helpers foram executadas pelos testes.
+
+Como próxima ação, devem ser adicionados testes para os demais comportamentos de `validators.js` e `parseId.js`, incluindo valores vazios, nulos, números positivos, números negativos e entradas com espaços, para ampliar a cobertura e confirmar as regras de validação.
+
 ---
