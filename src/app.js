@@ -17,6 +17,7 @@ const participanteRoutes = require("./routes/participanteRoutes");
 const inscricaoRoutes = require("./routes/inscricaoRoutes");
 const exportRoutes = require("./routes/exportRoutes");
 const notificacaoRoutes = require("./routes/notificacaoRoutes");
+const centralNotificacoesRoutes = require("./routes/centralNotificacoesRoutes");
 const authRoutes = require("./routes/authRoutes");
 // MIDDLEWARES
 const responseTime = require("./middlewares/responseTime");
@@ -48,6 +49,7 @@ app.use("/participantes", participanteRoutes);
 app.use("/inscricoes", inscricaoRoutes);
 app.use("/exportar", exportRoutes);
 app.use("/notificacoes", notificacaoRoutes);
+app.use("/central-notificacoes", centralNotificacoesRoutes);
 app.use("/auth", authRoutes);
 // ============================================
 // ROTA RAIZ

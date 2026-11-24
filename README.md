@@ -125,6 +125,42 @@ Swagger: http://localhost:3000/api-docs
 - Estatistíca de envio:  http://10.137.146.202:3000/notificacoes/estatisticas
 - Reenviar uma notificação: http://10.137.146.202:3000/notificacoes/{id}/reenviar
 
+### Central de Notificações (avisos avulsos)
+
+Esta API é separada das rotas `/notificacoes`, que continuam atendendo aos e-mails vinculados a inscrições. Os avisos da Central são armazenados em `central_notificacoes`; criar um aviso não envia e-mail.
+
+- `GET /central-notificacoes`: lista pública de avisos.
+- `POST /central-notificacoes`: cria um aviso (JWT obrigatório); retorna `201` com `id`, `canal`, `titulo`, `texto`, `lida` e `hora`.
+- `PATCH /central-notificacoes/{id}`: marca como lido usando `{ "lida": true }` (JWT obrigatório).
+- `DELETE /central-notificacoes/{id}`: exclui o aviso (JWT obrigatório).
+
+Após atualizar o código, aplique a migration aditiva com:
+
+```powershell
+npm run db:migrate
+```
+
+Para testar cada endpoint localmente no PowerShell, primeiro obtenha um token usando uma conta existente (ou registre uma em `POST /auth/registrar`):
+
+```powershell
+$base = "http://localhost:3000"
+$login = Invoke-RestMethod -Method Post -Uri "$base/auth/login" -ContentType "application/json" -Body (@{ email = "usuario@exemplo.com"; senha = "sua-senha" } | ConvertTo-Json)
+$headers = @{ Authorization = "Bearer $($login.token)" }
+
+# GET público
+Invoke-RestMethod -Method Get -Uri "$base/central-notificacoes"
+
+# POST autenticado; guarde o ID retornado para PATCH e DELETE
+$aviso = Invoke-RestMethod -Method Post -Uri "$base/central-notificacoes" -Headers $headers -ContentType "application/json" -Body (@{ canal = "PUSH"; titulo = "Aviso de teste"; texto = "Conteúdo do aviso"; lida = $false } | ConvertTo-Json)
+$aviso
+
+# PATCH autenticado
+Invoke-RestMethod -Method Patch -Uri "$base/central-notificacoes/$($aviso.id)" -Headers $headers -ContentType "application/json" -Body (@{ lida = $true } | ConvertTo-Json)
+
+# DELETE autenticado (resposta 204 sem corpo)
+Invoke-RestMethod -Method Delete -Uri "$base/central-notificacoes/$($aviso.id)" -Headers $headers
+```
+
 ### Exportação
 
 - Exportar eventos em XML: http://10.137.146.202:3000/exportar/eventos/xml

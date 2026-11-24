@@ -5,6 +5,7 @@ const Participante = require("./ParticipanteModel");
 const Inscricao = require("./InscricaoModel");
 const Notificacao = require("./NotificacaoModel");
 const Usuario = require("./UsuarioModel");
+const CentralNotificacao = require("./CentralNotificacaoModel");
 // ... (não precisa de relcionamento com as outras entidades)
 // ── Relacionamentos ──
 // Um Evento tem muitas Inscrições
@@ -35,4 +36,5 @@ module.exports = {
     Inscricao,
     Notificacao,
     Usuario,
+    CentralNotificacao,
 };
